@@ -1,0 +1,23 @@
+dst_filename=(r"D:\Anant\case study\data\subset2_59 try2_tif\turbidity_sample2_RF82.tif")
+driver = gdal.GetDriverByName("GTiff")
+# Specify the dimensions of the image
+rows, cols = output_turbidity_raster.shape
+# Create the output raster dataset
+dst_dataset = driver.Create(dst_filename, cols, rows, bands=1, eType = gdal.GDT_Float64)
+
+# Set required metadata and georeferencing information
+from osgeo import osr
+crs = osr.SpatialReference()
+crs.ImportFromEPSG(32645)   #  EPSG code for WGS84
+crs.ExportToWkt()
+transform =ds.GetGeoTransform()  #  Identity transform
+
+dst_dataset.SetProjection(crs.ExportToWkt())
+dst_dataset.SetGeoTransform(transform)
+
+# Write the array data to the raster band
+band = dst_dataset.GetRasterBand(1)
+band.WriteArray(output_turbidity_raster)
+#close the dataset to save changes
+dst_dataset.FlushCache()
+dst_dataset=None
