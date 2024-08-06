@@ -1,6 +1,6 @@
 IGBP LINUX Story:
 
-We were trying to clip nc files from a shapefile and then extract 'fSCA'(fractional snow cover area) for calculating snow covered area and save daily output file (csv). This task was accomplished using xarray, geopandas, shapely and pandas in the python programming language. Once the code was ready and running, it was found that the PC did not have enough specifications to achieve the processing of 35+ GB of data spanning 23 years. The script was prone to crashing due to low PC specs. 
+We were trying to clip nc files from a shapefile and then extract 'fSCA' (fractional snow cover area) for calculating snow covered area and save daily output file (csv). This task was accomplished using xarray, geopandas, shapely and pandas in the python programming language. Once the code was ready and running, it was found that the PC did not have enough specifications to achieve the processing of 35+ GB of data spanning 23 years. The script was prone to crashing due to low PC specs. 
 
 To overcome this problem, it was decided by Ishan Rayal (PhD, WRD, IIRS-Doon University) to use the then available Windows Server under IGBP. This server has 256 GB of RAM with 48 core Xeon processor. Miniconda was installed and attempts were made to create environments using .yaml and also manually. The envs were being created, however, while importing shapely and geopandas DLL error was persistent. One possible reason for this could be the mismatch between available pyhton packages and the Windows server OS.
 
